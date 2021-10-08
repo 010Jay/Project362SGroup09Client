@@ -5,10 +5,8 @@ import za.ac.cput.factory.EntertainmentFactory;
 import za.ac.cput.rest.EntertainmentRestImpl;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Random;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -365,32 +363,30 @@ public class EntertainmentFormUserInterface extends JFrame implements ActionList
 
             JOptionPane.showMessageDialog(null,"You have booked your event Successfully!!");
 
-            lblEventCode.setText("");
-            comboBox.setSelectedIndex(0);
-            lblText.setText("");
-            lblDate.setText(" ");
-            lblTime.setText(" ");
-            lblLocation.setText(" ");
-            lblCost.setText(" ");
-            lblSecurity.setText(" ");
-
-            comboBox.requestFocus();
         }
 
         else{
         JOptionPane.showMessageDialog(null,"You did not choose an event!");
         }
+            lblEventCode.setText("");
+            comboBox.setSelectedIndex(0);
+            lblText.setText("");
+            lblDate.setText("");
+            lblTime.setText("");
+            lblLocation.setText("");
+            lblCost.setText("");
+            lblSecurity.setText("");
         }
 
     else if(ed.getSource() == btnClear){
-        lblEventCode.setText(" ");
+        lblEventCode.setText("");
         comboBox.setSelectedIndex(0);
-        lblText.setText(" ");
-        lblDate.setText(" ");
-        lblTime.setText(" ");
-        lblLocation.setText(" ");
-        lblCost.setText(" ");
-        lblSecurity.setText(" ");
+        lblText.setText("");
+        lblDate.setText("");
+        lblTime.setText("");
+        lblLocation.setText("");
+        lblCost.setText("");
+        lblSecurity.setText("");
     }
     else if(ed.getSource() == btnQuit)
     {
