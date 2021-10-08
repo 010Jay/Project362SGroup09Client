@@ -1,13 +1,10 @@
 package za.ac.cput.user_interface;
 
-
 import za.ac.cput.entity.Food;
-import za.ac.cput.factory.FoodFactory;
 import za.ac.cput.rest.FoodRestImpl;
 
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,15 +12,17 @@ import java.awt.event.ActionListener;
 public class FoodFormUserInterface extends JFrame implements ActionListener {
 
     private JPanel northPanel, centerPanel, southPanel;
-    private JLabel lblHeading, lblFoodID, lblFoodName, lblCategory, lblPrice;
+    private JLabel lblHeading, lblFoodID, lblFoodName, lblCategory, lblPrice, lblQuantity;
     private  JLabel lblFoodID1,lblPrice1;
     private JComboBox comboBoxFoodName,comboBoxCategory;
-    String [] category = {"Finger Foods","Mexican","Asian Dishes", "Traditional SA dishes","Italian","Dessert"};
-    String [] foods = {"Onion Rings","Bread Sticks","Chicken strips","Calamari","Slap Chips","Burritos",
-            "Nachos","Tacos","Tostadas","Enchiladas","Cheeseburger","Steak Sandwiches","Cheese toasts",};
     private JButton btnSubmit, btnExit;
+    private JSpinner quantity;
     private Font ftHeading, ftText;
     private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8;
+
+    Food[] foodListBasedOnCategory;
+    private FoodRestImpl food = new FoodRestImpl();
+    String [] category = {"Finger Foods","Mexican","Asian Dishes", "Traditional SA dishes","Italian","Dessert","Takeaways","Desert"};
 
     public FoodFormUserInterface(){
 
@@ -39,12 +38,13 @@ public class FoodFormUserInterface extends JFrame implements ActionListener {
         lblCategory = new JLabel("Category: ", SwingConstants.RIGHT);
         lblPrice = new JLabel("Price: ", SwingConstants.RIGHT);
 
-
         lblFoodID1 = new JLabel(" ");
         comboBoxCategory = new JComboBox(category);
-        comboBoxFoodName = new JComboBox(foods);
+        comboBoxFoodName = new JComboBox();
         lblPrice1 = new JLabel(" ");
 
+        lblQuantity = new JLabel("Quantity: ", SwingConstants.RIGHT);
+        quantity = new JSpinner();
 
         btnSubmit = new JButton("Submit");
         btnExit = new JButton("Exit");
@@ -60,115 +60,114 @@ public class FoodFormUserInterface extends JFrame implements ActionListener {
         emptySpace6 = new JLabel();
         emptySpace7 = new JLabel();
         emptySpace8 =new JLabel();
+
+        FoodRestImpl.getFoodList();
     }
 
     public void setGui()
     {
         //Add Gridlayout to panels
-        northPanel.setLayout(new GridLayout(2,1));
-        centerPanel.setLayout(new GridLayout(5,3));
-        southPanel.setLayout(new GridLayout(2,2));
+            northPanel.setLayout(new GridLayout(2,1));
+            centerPanel.setLayout(new GridLayout(5,3));
+            southPanel.setLayout(new GridLayout(2,2));
 
         //Set font
-        lblHeading.setFont(ftHeading);
-        lblFoodID.setFont(ftText);
-        lblFoodName.setFont(ftText);
-        lblCategory.setFont(ftText);
-        lblPrice.setFont(ftText);
-
+            lblHeading.setFont(ftHeading);
+            lblFoodID.setFont(ftText);
+            lblFoodName.setFont(ftText);
+            lblCategory.setFont(ftText);
+            lblPrice.setFont(ftText);
+            lblQuantity.setFont(ftText);
 
         //Add components to panels
-        northPanel.add(lblHeading);
-        northPanel.add(emptySpace1);
+            northPanel.add(lblHeading);
+            northPanel.add(emptySpace1);
 
-        centerPanel.add(lblFoodID);
-        centerPanel.add(lblFoodID);
-        centerPanel.add(emptySpace2);
-        centerPanel.add(lblCategory);
-        centerPanel.add(comboBoxCategory);
-        centerPanel.add(lblFoodName);
-        centerPanel.add(comboBoxFoodName);
-        // centerPanel.add(emptySpace3);
+            centerPanel.add(lblFoodID);
+            centerPanel.add(lblFoodID1);
+            centerPanel.add(emptySpace2);
+            centerPanel.add(lblCategory);
+            centerPanel.add(comboBoxCategory);
+            centerPanel.add(emptySpace3);
+            centerPanel.add(lblFoodName);
+            centerPanel.add(comboBoxFoodName);
 
-        //centerPanel.add(emptySpace4);
-        centerPanel.add(lblPrice);
-        centerPanel.add(lblPrice1);
-        centerPanel.add(emptySpace5);
-        centerPanel.add(emptySpace6);
-        centerPanel.setPreferredSize(new Dimension(480, 140));
+            centerPanel.add(emptySpace4);
+            centerPanel.add(lblPrice);
+            centerPanel.add(lblPrice1);
+            centerPanel.add(emptySpace5);
+            centerPanel.add(lblQuantity);
+            centerPanel.add(quantity);
+            centerPanel.setPreferredSize(new Dimension(480, 140));
 
-        southPanel.add(emptySpace7);
-        southPanel.add(emptySpace8);
-        southPanel.add(btnSubmit);
-        southPanel.add(btnExit);
+            southPanel.add(emptySpace7);
+            southPanel.add(emptySpace8);
+            southPanel.add(btnSubmit);
+            southPanel.add(btnExit);
 
         //Add panels to frame
-        this.add(northPanel, BorderLayout.NORTH);
-        this.add(centerPanel, BorderLayout.CENTER);
-        this.add(southPanel, BorderLayout.SOUTH);
+            this.add(northPanel, BorderLayout.NORTH);
+            this.add(centerPanel, BorderLayout.CENTER);
+            this.add(southPanel, BorderLayout.SOUTH);
 
         //Add action listener to buttons | mouse listener to hyperlink
-        btnSubmit.addActionListener(this);
-        btnExit.addActionListener(this);
+            btnSubmit.addActionListener(this);
+            btnExit.addActionListener(this);
+
+            //Populate the comboBoxCategory, and comboBoxFoodName based on the category chosen
+                comboBoxCategory.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        comboBoxFoodName.removeAllItems();
+                        String categoryChosen = (String) comboBoxCategory.getSelectedItem();
+                        foodListBasedOnCategory = food.getFoodBasedOnCategory(categoryChosen);
+
+                        for(Food f : foodListBasedOnCategory)
+                        {
+                            if(f != null) {
+                                comboBoxFoodName.addItem(f.getName());
+                            }
+                        }
+                    }
+                });
+
+            //Populate foodId and price based on the food item selected
+                comboBoxFoodName.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String foodSelected = (String) comboBoxFoodName.getSelectedItem();
+
+                        for(Food f : foodListBasedOnCategory)
+                        {
+                            if(f != null && foodSelected != null) {
+                                if(foodSelected.equals(f.getName()))
+                                {
+                                    lblFoodID1.setText(String.valueOf(f.getFoodId()));
+                                    lblPrice1.setText(String.valueOf(f.getPrice()));
+                                }
+                            }
+                        }
+                    }
+                });
 
         //Frame
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.pack();
-        this.setVisible(true);
+            this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            this.pack();
+            this.setVisible(true);
     }
-
-//    public void itemStateChanged(ItemEvent e) {
-//        if (e.getSource() == comboBoxCategory ) {
-//            JComboBox cbc = (JComboBox) e.getSource();
-//            String message = (String) cbc.getSelectedItem();
-//
-//            switch (message) {
-//                case " ":
-//                    lblFoodID1.setText(" ");
-//                    break;
-//
-//                case "Finger Foods":
-//
-//                    break;
-
 
     public void actionPerformed(ActionEvent e) {
 
-        int foodID = Integer.parseInt(lblFoodID1.getText().trim());
-        String category = comboBoxCategory.getActionCommand().trim();
-        String foodName = comboBoxFoodName.getActionCommand().trim();
-        Double price = Double.parseDouble(lblPrice1.getText().trim());
-
-
-        //Create student object
-        Food food = FoodFactory.createFood(foodID, category, foodName,price);
-
         if(e.getActionCommand().equals("Submit"))
         {
-            //Check if all fields were included
-
-                JOptionPane.showMessageDialog(null, "Please enter in all information!");
-
-                //Submit information
-                boolean result = FoodRestImpl.saveFood(food);
-
-                //Check if query was successful;
-                if(result == true)
-                {
-                    JOptionPane.showMessageDialog(null, "Information was successfully submitted.");
-
-                    lblFoodID1.setText("");
-                    comboBoxCategory.setSelectedIndex(0);
-                    comboBoxFoodName.setSelectedIndex(0);
-                    lblPrice1.setText("");
-
-                    lblFoodID1.requestFocus();
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Submission unsuccessful!");
-                }
-            }
+            //Save order to the invoiceLine?? (FoodId and quantity and price of the food item which is require by the invoiceLine table)
+                String id = lblFoodID1.getText().trim();
+                int totalQuantity = (Integer) quantity.getValue();
+                System.out.println(totalQuantity); //Debug
+                double price = Double.parseDouble(lblPrice1.getText().trim());
+                double totalPrice = totalQuantity * price;
+                System.out.println(totalPrice); //Debug
+        }
 
         else if(e.getActionCommand().equals("Exit"))
         {

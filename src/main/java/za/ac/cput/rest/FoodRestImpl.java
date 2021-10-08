@@ -1,25 +1,49 @@
 package za.ac.cput.rest;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import za.ac.cput.entity.Food;
+
+import java.util.Set;
 
 public class FoodRestImpl {
 
     private static RestTemplate restTemplate = new RestTemplate();
-    private final static String BASE_URL = "http://localhost:8080/entertainment/getEntertainment";
+    private final static String BASE_URL = "http://localhost:8080/food/getFoodList";
+    private static Set<Food> foodList;
 
-    public static boolean saveFood(Food food)
+    public static Set<Food> getFoodList()
     {
-        ResponseEntity<Boolean> postResponse = restTemplate.postForEntity(BASE_URL, food, Boolean.class);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> entity = new HttpEntity(null, headers);
+        ResponseEntity<Set<Food>> response = restTemplate.exchange(BASE_URL, HttpMethod.GET, entity, new ParameterizedTypeReference<Set<Food>>() {});
 
-        if(postResponse.getStatusCode().equals(HttpStatus.OK))
+        if(response.getStatusCode().equals(HttpStatus.OK))
         {
-            return true;
+           foodList = response.getBody();
+           return foodList;
         }
-        else {
-            return false;
-        }
+
+        return null;
     }
+
+    public Food[] getFoodBasedOnCategory(String category)
+    {
+        int i = 0;
+        Food[] food = new Food[foodList.size()];
+
+        for(Food f : foodList)
+        {
+            if(category.equals(f.getCategory())) {
+                food[i] = f;
+                i++;
+            }
+        }
+
+        return food;
+    }
+
+    //Save order to invoiceLine??
+
 }
