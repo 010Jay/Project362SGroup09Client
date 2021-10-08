@@ -1,5 +1,12 @@
 package za.ac.cput.factory;
 
+/**
+ * FoodFactory.java
+ * Factory class for the Login
+ * Author: ??
+ * Date: 8 October 2021
+ **/
+
 import za.ac.cput.entity.Food;
 
 public class FoodFactory {

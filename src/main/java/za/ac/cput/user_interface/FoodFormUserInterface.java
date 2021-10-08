@@ -1,5 +1,12 @@
 package za.ac.cput.user_interface;
 
+/**
+ * Author: ??
+ * Description: Food Screen Gui Interface for students to order food.
+ * File: FoodUserInterface.java
+ * Date: 8 October 2021
+ */
+
 import za.ac.cput.entity.Food;
 import za.ac.cput.rest.FoodRestImpl;
 
@@ -61,7 +68,7 @@ public class FoodFormUserInterface extends JFrame implements ActionListener {
         emptySpace7 = new JLabel();
         emptySpace8 =new JLabel();
 
-        FoodRestImpl.getFoodList();
+        FoodRestImpl.getFoodList(); //Get list of food when the Gui is started
     }
 
     public void setGui()

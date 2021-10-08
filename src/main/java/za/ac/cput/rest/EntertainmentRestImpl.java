@@ -1,10 +1,16 @@
 package za.ac.cput.rest;
 
+/**
+ * EntertainmentRestImpl.java
+ * Rest implementation for the Entertainment Gui
+ * Author: ??
+ * Date: 8 October 2021
+ */
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import za.ac.cput.entity.Entertainment;
-
 
 public class EntertainmentRestImpl {
 

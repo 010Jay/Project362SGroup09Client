@@ -1,5 +1,12 @@
 package za.ac.cput.entity;
 
+/**
+ * Food.java
+ * Entity for the Food
+ * Author: ??
+ * Date: 8 October 2021
+ */
+
 public class Food {
 
     private int foodId;

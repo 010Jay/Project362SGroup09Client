@@ -1,11 +1,11 @@
+package za.ac.cput.user_interface;
+
 /**
  * Author: Jason Jaftha 217009301
  * Description: Login Screen Gui Interface for students to log into the application.
- * File: LoginGui.java
+ * File: LoginUserInterface.java
  * Date: May 2021
  */
-
-package za.ac.cput.user_interface;
 
 import za.ac.cput.rest.LoginRestImpl;
 

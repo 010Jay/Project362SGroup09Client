@@ -3,7 +3,7 @@ package za.ac.cput.user_interface;
 /**
  * Author: Jason Jaftha 217009301
  * Description: Student form gui interface for students to submit there personal details.
- * File: StudentFormGui.java
+ * File: StudentFormUserInterface.java
  * Date: May 2021
  **/
 

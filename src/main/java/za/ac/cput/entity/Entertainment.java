@@ -1,5 +1,12 @@
 package za.ac.cput.entity;
 
+/**
+ * Entertainment.java
+ * Entity for the Entertainment
+ * Author: ??
+ * Date: 8 October 2021
+ */
+
 public class Entertainment {
 
         private int eventCode;

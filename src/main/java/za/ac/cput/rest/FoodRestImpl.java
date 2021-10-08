@@ -1,5 +1,12 @@
 package za.ac.cput.rest;
 
+/**
+ * FoodRestImpl.java
+ * Rest implementation for the Food Gui
+ * Author: ??
+ * Date: 8 October 2021
+ */
+
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
