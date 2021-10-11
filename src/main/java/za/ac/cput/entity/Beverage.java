@@ -15,15 +15,16 @@ public class Beverage {
     private String category;
     private double price;
 
+    protected Beverage() {}
+
     public Beverage (Builder builder)
     {
         this.bevCode = builder.bevCode;
         this.bevName = builder.bevName;
         this.category =builder.category;
         this.price = builder.price;
-
-
     }
+
     public int getBevCode() {
         return bevCode;
     }
@@ -40,15 +41,27 @@ public class Beverage {
         return price;
     }
 
+    public void setBevCode(int bevCode) {
+        this.bevCode = bevCode;
+    }
 
+    public void setBevName(String bevName) {
+        this.bevName = bevName;
+    }
 
-    public static class Builder{
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public static class Builder {
         private int bevCode;
         private String bevName;
         private String category;
         private double price;
-
-
 
         public Builder setBevCode(int bevCode) {
             this.bevCode = bevCode;

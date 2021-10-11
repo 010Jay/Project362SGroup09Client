@@ -14,11 +14,10 @@ import java.awt.event.ActionListener;
  * Date: 10 October 2021
  */
 
-
 public class BeverageUserInterface extends JFrame implements ActionListener {
     private JPanel northPanel, centerPanel, southPanel;
     private JLabel lblHeading, lblBevCode, lblCategory, lblBevName, lblQuantity, lblPrice;
-    private JTextField txtBevCode, txtPrice;
+    private JLabel lblBevCode1, lblPrice1;
     private JSpinner quantity;
     private JComboBox cmbCategory, cmbBevName;
     private JButton btnSubmit, btnExit;
@@ -44,12 +43,11 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
         lblQuantity = new JLabel("Quantity: ", SwingConstants.RIGHT);
         lblPrice = new JLabel("Price: ", SwingConstants.RIGHT);
 
-        txtBevCode = new JTextField();
+        lblBevCode1 = new JLabel("");
         cmbCategory = new JComboBox(category);
         cmbBevName = new JComboBox();
         quantity = new JSpinner();
-        txtPrice = new JTextField();
-
+        lblPrice1 = new JLabel("");
 
         btnSubmit = new JButton("Submit");
         btnExit = new JButton("Exit");
@@ -75,20 +73,20 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
         centerPanel.setLayout(new GridLayout(5, 3));
         southPanel.setLayout(new GridLayout(2, 2));
 
-
         lblHeading.setFont(ftHeading);
         lblBevCode.setFont(ftText);
+        lblBevCode1.setFont(ftText);
         lblCategory.setFont(ftText);
         lblBevName.setFont(ftText);
         lblQuantity.setFont(ftText);
         lblPrice.setFont(ftText);
-
+        lblPrice1.setFont(ftText);
 
         northPanel.add(lblHeading);
         northPanel.add(emptySpace1);
 
         centerPanel.add(lblBevCode);
-        centerPanel.add(txtBevCode);
+        centerPanel.add(lblBevCode1);
         centerPanel.add(emptySpace2);
         centerPanel.add(lblCategory);
         centerPanel.add(cmbCategory);
@@ -100,7 +98,7 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
         centerPanel.add(quantity);
         centerPanel.add(emptySpace5);
         centerPanel.add(lblPrice);
-        centerPanel.add(txtPrice);
+        centerPanel.add(lblPrice1);
         centerPanel.add(emptySpace6);
         centerPanel.setPreferredSize(new Dimension(480, 140));
 
@@ -109,15 +107,12 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
         southPanel.add(btnSubmit);
         southPanel.add(btnExit);
 
-
         this.add(northPanel, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(southPanel, BorderLayout.SOUTH);
 
-
         btnSubmit.addActionListener(this);
         btnExit.addActionListener(this);
-
 
         cmbCategory.addActionListener(new ActionListener() {
             @Override
@@ -142,8 +137,8 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
                 for (Beverage b : beverageListBasedOnCategory) {
                     if (b != null && beverageSelected != null) {
                         if (beverageSelected.equals(b.getBevName())) {
-                            lblBevCode.setText(String.valueOf(b.getBevCode()));
-                            lblPrice.setText(String.valueOf(b.getPrice()));
+                            lblBevCode1.setText(String.valueOf(b.getBevCode()));
+                            lblPrice1.setText(String.valueOf(b.getPrice()));
                         }
                     }
                 }
@@ -155,28 +150,26 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-        public void actionPerformed (ActionEvent e){
+    public void actionPerformed (ActionEvent e) {
 
-            if (e.getActionCommand().equals("Submit")) {
+        if (e.getActionCommand().equals("Submit")) {
 
-                String id = lblBevCode.getText().trim();
-                int totalQuantity = (Integer) quantity.getValue();
-                System.out.println(totalQuantity);
-                double price = Double.parseDouble(lblPrice.getText().trim());
-                double totalPrice = totalQuantity * price;
-                System.out.println(totalPrice);
-            } else if (e.getActionCommand().equals("Exit")) {
-                System.exit(0);
-            }
-
+            String id = lblBevCode1.getText().trim();
+            int totalQuantity = (Integer) quantity.getValue();
+            System.out.println(totalQuantity);
+            double price = Double.parseDouble(lblPrice1.getText().trim());
+            double totalPrice = totalQuantity * price;
+            System.out.println(totalPrice);
         }
-
-
-        public static void main (String[]args){
-
-            new BeverageUserInterface().setGui();
-
+        else if (e.getActionCommand().equals("Exit")) {
+            System.exit(0);
         }
     }
+
+    public static void main (String[]args){
+
+        new BeverageUserInterface().setGui();
+    }
+}
 
 
