@@ -24,8 +24,6 @@ public class Entertainment {
             this.security = builder.security;
         }
 
-
-
         //getters
         public int getEventCode(){return  eventCode;}
         public String getChooseEvent() {
@@ -50,7 +48,6 @@ public class Entertainment {
         }
 
         //setters
-
         public void setEventCode(int eventCode) {this.eventCode = eventCode;}
         public void setChooseEvent(String ChooseEvent) {
             this.ChooseEvent = ChooseEvent;

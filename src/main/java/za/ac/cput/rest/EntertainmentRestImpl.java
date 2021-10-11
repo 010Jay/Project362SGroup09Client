@@ -7,26 +7,34 @@ package za.ac.cput.rest;
  * Date: 8 October 2021
  */
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import za.ac.cput.entity.Entertainment;
+import za.ac.cput.entity.Food;
+
+import java.util.Set;
 
 public class EntertainmentRestImpl {
 
     private static RestTemplate restTemplate = new RestTemplate();
     private final static String BASE_URL = "http://localhost:8080/entertainment/getEntertainment";
+    private static Set<Entertainment> eventList;
 
-    public static boolean saveEntertainment(Entertainment entertainment)
+    public static Set<Entertainment>  getEntertainmentList()
     {
-        ResponseEntity<Boolean> postResponse = restTemplate.postForEntity(BASE_URL, entertainment, Boolean.class);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> entity = new HttpEntity(null, headers);
+
+        ResponseEntity<Set<Entertainment>> postResponse = restTemplate.exchange(BASE_URL, HttpMethod.GET, entity, new ParameterizedTypeReference<Set<Entertainment>>() {});
 
         if(postResponse.getStatusCode().equals(HttpStatus.OK))
         {
-            return true;
+            eventList = postResponse.getBody();
+            return eventList;
         }
         else {
-            return false;
+            return null;
         }
     }
 }
