@@ -9,6 +9,7 @@ package za.ac.cput.user_interface;
 
 import za.ac.cput.entity.Student;
 import za.ac.cput.factory.StudentFactory;
+import za.ac.cput.rest.InvoiceRestImpl;
 import za.ac.cput.rest.StudentRestImpl;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StudentFormUserInterface extends JFrame implements ActionListener {
+public class StudentUserInterface extends JFrame implements ActionListener {
 
     //Attributes
         private JPanel northPanel, centerPanel, southPanel;
@@ -27,7 +28,7 @@ public class StudentFormUserInterface extends JFrame implements ActionListener {
         private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8;
 
     //Constructor
-        public StudentFormUserInterface()
+        public StudentUserInterface()
         {
             //Initialize all Attributes
                 super("Student Form Screen version: 1.0 by @Jason Jaftha");
@@ -143,6 +144,7 @@ public class StudentFormUserInterface extends JFrame implements ActionListener {
                 else {
                     //Submit information
                         boolean result = StudentRestImpl.saveStudentDetails(student);
+                        InvoiceRestImpl.saveInvoice(student.getStudentNumber(), null, "");
 
                     //Check if query was successful;
                         if(result == true)
@@ -172,7 +174,7 @@ public class StudentFormUserInterface extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new StudentFormUserInterface().setGui();
+        new StudentUserInterface().setGui();
 
     }
 }

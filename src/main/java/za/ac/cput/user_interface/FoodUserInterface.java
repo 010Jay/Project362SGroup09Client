@@ -9,6 +9,7 @@ package za.ac.cput.user_interface;
 
 import za.ac.cput.entity.Food;
 import za.ac.cput.rest.FoodRestImpl;
+import za.ac.cput.rest.InvoiceLineRestImpl;
 
 import java.awt.*;
 
@@ -16,7 +17,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FoodFormUserInterface extends JFrame implements ActionListener {
+public class FoodUserInterface extends JFrame implements ActionListener {
 
     private JPanel northPanel, centerPanel, southPanel;
     private JLabel lblHeading, lblFoodID, lblFoodName, lblCategory, lblPrice, lblQuantity;
@@ -31,7 +32,7 @@ public class FoodFormUserInterface extends JFrame implements ActionListener {
     private FoodRestImpl food = new FoodRestImpl();
     String [] category = {"Finger Foods","Mexican","Asian Dishes", "Traditional SA dishes","Italian","Dessert","Takeaways","Desert"};
 
-    public FoodFormUserInterface(){
+    public FoodUserInterface(){
 
         super("Food Form Screen version: 1.0 by @Jason Jaftha & Andy Hine");
 
@@ -174,6 +175,10 @@ public class FoodFormUserInterface extends JFrame implements ActionListener {
                 double price = Double.parseDouble(lblPrice1.getText().trim());
                 double totalPrice = totalQuantity * price;
                 System.out.println(totalPrice); //Debug
+                String totalQuant = String.valueOf(totalQuantity);
+                String totalPriceS = String.valueOf(totalPrice);
+
+            InvoiceLineRestImpl.saveInvoiceLine(id, "", totalQuant, "", totalPriceS);
         }
 
         else if(e.getActionCommand().equals("Exit"))
@@ -185,7 +190,7 @@ public class FoodFormUserInterface extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
-        new FoodFormUserInterface().setGui();
+        new FoodUserInterface().setGui();
 
     }
 }

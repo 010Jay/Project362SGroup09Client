@@ -2,6 +2,8 @@ package za.ac.cput.user_interface;
 
 import za.ac.cput.entity.Beverage;
 import za.ac.cput.rest.BeverageRestImpl;
+import za.ac.cput.rest.InvoiceLineRestImpl;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -160,6 +162,12 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
             double price = Double.parseDouble(lblPrice1.getText().trim());
             double totalPrice = totalQuantity * price;
             System.out.println(totalPrice);
+            String totalQuant = String.valueOf(totalQuantity);
+            String totalPriceS = String.valueOf(totalPrice);
+
+            InvoiceLineRestImpl.saveInvoiceLine("", id, "", totalQuant, totalPriceS);
+
+            JOptionPane.showMessageDialog(null, "Order was submitted");
         }
         else if (e.getActionCommand().equals("Exit")) {
             System.exit(0);

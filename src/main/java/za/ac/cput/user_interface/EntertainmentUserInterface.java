@@ -9,6 +9,7 @@ package za.ac.cput.user_interface;
 
 import za.ac.cput.entity.Entertainment;
 import za.ac.cput.rest.EntertainmentRestImpl;
+import za.ac.cput.rest.InvoiceRestImpl;
 
 import java.awt.*;
 import javax.swing.*;
@@ -16,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
-public class EntertainmentFormUserInterface extends JFrame implements ActionListener {
+public class EntertainmentUserInterface extends JFrame implements ActionListener {
 
     private JPanel panelNorth, panelWest, panelCenter, panelSouth;
     private JLabel lblHeading;
@@ -37,7 +38,7 @@ public class EntertainmentFormUserInterface extends JFrame implements ActionList
 
     private Set<Entertainment> events;
 
-    public EntertainmentFormUserInterface(){
+    public EntertainmentUserInterface(){
         super("Entertainment Application ver 1.0");
 
         panelNorth = new JPanel();
@@ -225,11 +226,14 @@ public class EntertainmentFormUserInterface extends JFrame implements ActionList
     @Override
     public void actionPerformed(ActionEvent ed) {
 
-        int eventCode = Integer.parseInt(lblEventCode.getText().trim());
+        String eventCode = lblEventCode.getText().trim();
+        String price = lblCost.getText().trim();
 
     if (ed.getSource() == btnSave) {
 
         //Save event booking to the invoice table ??
+            InvoiceRestImpl.saveInvoice(null, eventCode, price);
+            JOptionPane.showMessageDialog(null, "Order was submitted.");
     }
     else if(ed.getSource() == btnClear) {
         lblEventCode.setText("");
@@ -247,7 +251,7 @@ public class EntertainmentFormUserInterface extends JFrame implements ActionList
 }
 
     public static void main(String[] args) {
-        new EntertainmentFormUserInterface().setGUI();
+        new EntertainmentUserInterface().setGUI();
     }
 }
 
