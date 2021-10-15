@@ -24,7 +24,7 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
     private JLabel lbl,lbl0, lbl1, lbl2, lbl3, lbl4, lbl5,lbl6;
     private JLabel lblEventCode;
     private JComboBox comboBox;
-    private JTextArea lblAbout;
+    private JLabel lblAbout;
     private JLabel lblDate;
     private JLabel lblTime;
     private JLabel lblLocation;
@@ -45,8 +45,7 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
 
         lblEventCode = new JLabel("");
         comboBox = new JComboBox();
-        lblAbout = new JTextArea("");
-        lblAbout.setLineWrap(true);
+        lblAbout = new JLabel("");
         lblDate = new JLabel("");
         lblTime = new JLabel("");
         lblLocation = new JLabel("");
@@ -107,7 +106,7 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
             comboBox.setFont(ftText);
             lblAbout.setFont(ftAbout);
             lblAbout.setForeground(Color.GRAY);
-            lblAbout.setBackground(Color.decode("#CECECE"));
+            lblAbout.setBackground(Color.decode("#36454F"));
             lblEventCode.setFont(ftText);
             lblCost.setFont(ftText);
             lblLocation.setFont(ftText);
@@ -196,6 +195,7 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
                         {
                             lblEventCode.setText(String.valueOf(evts.getEventCode()));
                             lblAbout.setText(evts.getAbout());
+                            lblAbout.setToolTipText(evts.getAbout());
                             lblDate.setText(evts.getDate());
                             lblTime.setText(evts.getTime());
                             lblLocation.setText(evts.getLocation());
