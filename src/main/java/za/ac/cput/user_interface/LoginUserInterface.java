@@ -25,7 +25,7 @@ public class LoginUserInterface extends JFrame implements ActionListener{
         private  JPasswordField txtPassword;
         private JButton btnLogin, btnExit;
         private Font ftHeading, ftText;
-        private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7;
+        private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
         //Capture student number
             private String studentNo;
@@ -40,10 +40,10 @@ public class LoginUserInterface extends JFrame implements ActionListener{
                 centerPanel = new JPanel();
                 southPanel = new JPanel();
 
-                lblHeading = new JLabel("Please login...", SwingConstants.CENTER);
+                lblHeading = new JLabel("Login Screen", SwingConstants.CENTER);
                 lblUsername = new JLabel("Username: ", SwingConstants.RIGHT);
                 lblPassword = new JLabel("Password: ", SwingConstants.RIGHT);
-                lblHyperlink = new JLabel("Not register? Click here!", SwingConstants.CENTER);
+                lblHyperlink = new JLabel("Not registered? Click here!", SwingConstants.CENTER);
 
                 txtUsername = new JTextField();
                 txtPassword = new JPasswordField();
@@ -51,7 +51,7 @@ public class LoginUserInterface extends JFrame implements ActionListener{
                 btnLogin = new JButton("Login");
                 btnExit = new JButton("Exit");
 
-                ftHeading = new Font("Arial", Font.BOLD, 20);
+                ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
                 ftText = new Font("Arial", Font.PLAIN, 12);
 
                 emptySpace1 = new JLabel();
@@ -61,17 +61,21 @@ public class LoginUserInterface extends JFrame implements ActionListener{
                 emptySpace5 = new JLabel();
                 emptySpace6 = new JLabel();
                 emptySpace7 = new JLabel();
+                emptySpace8 = new JLabel();
+                emptySpace9 = new JLabel();
+                emptySpace10 = new JLabel();
         }
 
     public void setGui()
     {
         //Add Gridlayout to panels
-            northPanel.setLayout(new GridLayout(2,1));
-            centerPanel.setLayout(new GridLayout(3,3));
+            northPanel.setLayout(new FlowLayout());
+            centerPanel.setLayout(new GridLayout(4,3));
             southPanel.setLayout(new GridLayout(2,2));
 
        //Set font
             lblHeading.setFont(ftHeading);
+            lblHeading.setForeground(Color.decode("#FFFFFF"));
             lblUsername.setFont(ftText);
             lblPassword.setFont(ftText);
             lblHyperlink.setFont(ftText);
@@ -82,8 +86,11 @@ public class LoginUserInterface extends JFrame implements ActionListener{
 
        //Add components to panels
             northPanel.add(lblHeading);
-            northPanel.add(emptySpace1);
+            northPanel.setBackground(Color.decode("#4863A0"));
 
+            centerPanel.add(emptySpace1);
+            centerPanel.add(emptySpace8);
+            centerPanel.add(emptySpace9);
             centerPanel.add(lblUsername);
             centerPanel.add(txtUsername);
             centerPanel.add(emptySpace2);
@@ -93,12 +100,13 @@ public class LoginUserInterface extends JFrame implements ActionListener{
             centerPanel.add(emptySpace4);
             centerPanel.add(lblHyperlink);
             centerPanel.add(emptySpace5);
-            centerPanel.setPreferredSize(new Dimension(480, 80));
+            centerPanel.setBackground(Color.decode("#CECECE"));
 
             southPanel.add(emptySpace6);
             southPanel.add(emptySpace7);
             southPanel.add(btnLogin);
             southPanel.add(btnExit);
+            southPanel.setBackground(Color.decode("#CECECE"));
 
        //Add panels to frame
             this.add(northPanel, BorderLayout.NORTH);
@@ -112,13 +120,15 @@ public class LoginUserInterface extends JFrame implements ActionListener{
             {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    System.out.println("Go to the registration page..."); //Test
+                    new RegistrationUserInterface().setGui();
+                    disposeFrame();
                 }
             });
 
        //Frame
             this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             this.pack();
+            this.setSize(640, 260);
             this.setVisible(true);
     }
 
@@ -141,7 +151,8 @@ public class LoginUserInterface extends JFrame implements ActionListener{
 
                     if (result == true) {
                         JOptionPane.showMessageDialog(null, "Login was successful");
-                        System.out.println("Go to next page..."); //Test
+                        new EntertainmentUserInterface().setGUI();
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Username or password is incorrect!");
                         txtPassword.setText("");
@@ -155,6 +166,10 @@ public class LoginUserInterface extends JFrame implements ActionListener{
             }
     }
 
+    public void disposeFrame()
+    {
+        this.dispose();
+    }
 
     //Set student number
         public void setLoginStudentNo(String studentNo)

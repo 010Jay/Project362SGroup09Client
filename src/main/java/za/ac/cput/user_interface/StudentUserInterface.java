@@ -25,13 +25,13 @@ public class StudentUserInterface extends JFrame implements ActionListener {
         private  JTextField txtStudentNo, txtFirstName, txtLastName, txtEmailAddress, txtCellNo;
         private JButton btnSubmit, btnExit;
         private Font ftHeading, ftText;
-        private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8;
+        private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
     //Constructor
         public StudentUserInterface()
         {
             //Initialize all Attributes
-                super("Student Form Screen version: 1.0 by @Jason Jaftha");
+                super("Student Detail Screen version: 1.0 by @Group 09");
 
                 northPanel = new JPanel();
                 centerPanel = new JPanel();
@@ -53,7 +53,7 @@ public class StudentUserInterface extends JFrame implements ActionListener {
                 btnSubmit = new JButton("Submit");
                 btnExit = new JButton("Exit");
 
-                ftHeading = new Font("Arial", Font.BOLD, 20);
+                ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
                 ftText = new Font("Arial", Font.PLAIN, 12);
 
                 emptySpace1 = new JLabel();
@@ -63,18 +63,21 @@ public class StudentUserInterface extends JFrame implements ActionListener {
                 emptySpace5 = new JLabel();
                 emptySpace6 = new JLabel();
                 emptySpace7 = new JLabel();
-                emptySpace8 =new JLabel();
+                emptySpace8 = new JLabel();
+                emptySpace9 = new JLabel();
+                emptySpace10 = new JLabel();
         }
 
     public void setGui()
     {
         //Add Gridlayout to panels
-            northPanel.setLayout(new GridLayout(2,1));
-            centerPanel.setLayout(new GridLayout(5,3));
+            northPanel.setLayout(new FlowLayout());
+            centerPanel.setLayout(new GridLayout(6,3));
             southPanel.setLayout(new GridLayout(2,2));
 
         //Set font
             lblHeading.setFont(ftHeading);
+            lblHeading.setForeground(Color.decode("#FFFFFF"));
             lblStudentNo.setFont(ftText);
             lblFirstName.setFont(ftText);
             lblLastName.setFont(ftText);
@@ -83,8 +86,11 @@ public class StudentUserInterface extends JFrame implements ActionListener {
 
         //Add components to panels
             northPanel.add(lblHeading);
-            northPanel.add(emptySpace1);
+            northPanel.setBackground(Color.decode("#4863A0"));
 
+            centerPanel.add(emptySpace1);
+            centerPanel.add(emptySpace9);
+            centerPanel.add(emptySpace10);
             centerPanel.add(lblStudentNo);
             centerPanel.add(txtStudentNo);
             centerPanel.add(emptySpace2);
@@ -100,12 +106,13 @@ public class StudentUserInterface extends JFrame implements ActionListener {
             centerPanel.add(lblCellNo);
             centerPanel.add(txtCellNo);
             centerPanel.add(emptySpace6);
-            centerPanel.setPreferredSize(new Dimension(480, 140));
+            centerPanel.setBackground(Color.decode("#CECECE"));
 
             southPanel.add(emptySpace7);
             southPanel.add(emptySpace8);
             southPanel.add(btnSubmit);
             southPanel.add(btnExit);
+            southPanel.setBackground(Color.decode("#CECECE"));
 
         //Add panels to frame
             this.add(northPanel, BorderLayout.NORTH);
@@ -119,6 +126,7 @@ public class StudentUserInterface extends JFrame implements ActionListener {
         //Frame
             this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             this.pack();
+            this.setSize(640, 340);
             this.setVisible(true);
     }
 
@@ -149,7 +157,7 @@ public class StudentUserInterface extends JFrame implements ActionListener {
                     //Check if query was successful;
                         if(result == true)
                         {
-                            JOptionPane.showMessageDialog(null, "Information was successfully submitted.");
+                            JOptionPane.showMessageDialog(null, "Your details was successfully submitted.");
 
                             txtStudentNo.setText("");
                             txtFirstName.setText("");
@@ -158,10 +166,12 @@ public class StudentUserInterface extends JFrame implements ActionListener {
                             txtCellNo.setText("");
 
                             txtStudentNo.requestFocus();
+
+                            this.dispose();
                         }
                         else
                         {
-                            JOptionPane.showMessageDialog(null, "Submission unsuccessful!");
+                            JOptionPane.showMessageDialog(null, "Your details could not be submitted.");
                         }
                 }
             }

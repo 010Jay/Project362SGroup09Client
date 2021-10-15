@@ -26,21 +26,21 @@ public class FoodUserInterface extends JFrame implements ActionListener {
     private JButton btnSubmit, btnExit;
     private JSpinner quantity;
     private Font ftHeading, ftText;
-    private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8;
+    private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
     Food[] foodListBasedOnCategory;
     private FoodRestImpl food = new FoodRestImpl();
-    String [] category = {"Finger Foods","Mexican","Asian Dishes", "Traditional SA dishes","Italian","Dessert","Takeaways","Desert"};
+    String [] category = {"Choose...", "Finger Foods","Mexican","Asian Dishes", "Traditional SA dishes","Italian","Takeaways","Desert"};
 
     public FoodUserInterface(){
 
-        super("Food Form Screen version: 1.0 by @Jason Jaftha & Andy Hine");
+        super("Food Menu Screen version: 1.0 by @Group 09");
 
         northPanel = new JPanel();
         centerPanel = new JPanel();
         southPanel = new JPanel();
 
-        lblHeading = new JLabel("Food Form", SwingConstants.CENTER);
+        lblHeading = new JLabel("Food Menu", SwingConstants.CENTER);
         lblFoodID = new JLabel("Food ID: ", SwingConstants.RIGHT);
         lblFoodName = new JLabel("Food Name: ", SwingConstants.RIGHT);
         lblCategory = new JLabel("Category: ", SwingConstants.RIGHT);
@@ -52,12 +52,13 @@ public class FoodUserInterface extends JFrame implements ActionListener {
         lblPrice1 = new JLabel(" ");
 
         lblQuantity = new JLabel("Quantity: ", SwingConstants.RIGHT);
-        quantity = new JSpinner();
+        SpinnerModel model = new SpinnerNumberModel(1, 1, 10, 1);
+        quantity = new JSpinner(model);
 
         btnSubmit = new JButton("Submit");
         btnExit = new JButton("Exit");
 
-        ftHeading = new Font("Arial", Font.BOLD, 20);
+        ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
         ftText = new Font("Arial", Font.PLAIN, 12);
 
         emptySpace1 = new JLabel();
@@ -67,7 +68,9 @@ public class FoodUserInterface extends JFrame implements ActionListener {
         emptySpace5 = new JLabel();
         emptySpace6 = new JLabel();
         emptySpace7 = new JLabel();
-        emptySpace8 =new JLabel();
+        emptySpace8 = new JLabel();
+        emptySpace9 = new JLabel();
+        emptySpace10 = new JLabel();
 
         FoodRestImpl.getFoodList(); //Get list of food when the Gui is started
     }
@@ -75,12 +78,13 @@ public class FoodUserInterface extends JFrame implements ActionListener {
     public void setGui()
     {
         //Add Gridlayout to panels
-            northPanel.setLayout(new GridLayout(2,1));
-            centerPanel.setLayout(new GridLayout(5,3));
+            northPanel.setLayout(new FlowLayout());
+            centerPanel.setLayout(new GridLayout(6,3));
             southPanel.setLayout(new GridLayout(2,2));
 
         //Set font
             lblHeading.setFont(ftHeading);
+            lblHeading.setForeground(Color.decode("#FFFFFF"));
             lblFoodID.setFont(ftText);
             lblFoodName.setFont(ftText);
             lblCategory.setFont(ftText);
@@ -89,8 +93,11 @@ public class FoodUserInterface extends JFrame implements ActionListener {
 
         //Add components to panels
             northPanel.add(lblHeading);
-            northPanel.add(emptySpace1);
+            northPanel.setBackground(Color.decode("#4863A0"));
 
+            centerPanel.add(emptySpace1);
+            centerPanel.add(emptySpace9);
+            centerPanel.add(emptySpace10);
             centerPanel.add(lblFoodID);
             centerPanel.add(lblFoodID1);
             centerPanel.add(emptySpace2);
@@ -101,17 +108,18 @@ public class FoodUserInterface extends JFrame implements ActionListener {
             centerPanel.add(comboBoxFoodName);
 
             centerPanel.add(emptySpace4);
-            centerPanel.add(lblPrice);
-            centerPanel.add(lblPrice1);
-            centerPanel.add(emptySpace5);
             centerPanel.add(lblQuantity);
             centerPanel.add(quantity);
-            centerPanel.setPreferredSize(new Dimension(480, 140));
+            centerPanel.add(emptySpace5);
+            centerPanel.add(lblPrice);
+            centerPanel.add(lblPrice1);
+            centerPanel.setBackground(Color.decode("#CECECE"));
 
             southPanel.add(emptySpace7);
             southPanel.add(emptySpace8);
             southPanel.add(btnSubmit);
             southPanel.add(btnExit);
+            southPanel.setBackground(Color.decode("#CECECE"));
 
         //Add panels to frame
             this.add(northPanel, BorderLayout.NORTH);
@@ -127,6 +135,8 @@ public class FoodUserInterface extends JFrame implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         comboBoxFoodName.removeAllItems();
+                        lblFoodID1.setText("");
+                        lblPrice1.setText("");
                         String categoryChosen = (String) comboBoxCategory.getSelectedItem();
                         foodListBasedOnCategory = food.getFoodBasedOnCategory(categoryChosen);
 
@@ -161,6 +171,7 @@ public class FoodUserInterface extends JFrame implements ActionListener {
         //Frame
             this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             this.pack();
+            this.setSize(640, 320);
             this.setVisible(true);
     }
 
@@ -170,6 +181,10 @@ public class FoodUserInterface extends JFrame implements ActionListener {
         {
             //Save order to the invoiceLine?? (FoodId and quantity and price of the food item which is require by the invoiceLine table)
                 String id = lblFoodID1.getText().trim();
+
+            if(id.equals("")){
+                JOptionPane.showMessageDialog(null, "Please select a food item to order");
+            }else{
                 int totalQuantity = (Integer) quantity.getValue();
                 System.out.println(totalQuantity); //Debug
                 double price = Double.parseDouble(lblPrice1.getText().trim());
@@ -178,7 +193,16 @@ public class FoodUserInterface extends JFrame implements ActionListener {
                 String totalQuant = String.valueOf(totalQuantity);
                 String totalPriceS = String.valueOf(totalPrice);
 
-            InvoiceLineRestImpl.saveInvoiceLine(id, "", totalQuant, "", totalPriceS);
+                boolean result = InvoiceLineRestImpl.saveInvoiceLine(id, "", totalQuant, "", totalPriceS); //Going to return false
+
+                if(result){
+                    JOptionPane.showMessageDialog(null, "Your food order could not be submitted.");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Your food order was successfully submitted.");
+                    new BeverageUserInterface().setGui();
+                    this.dispose();
+                }
+            }
         }
 
         else if(e.getActionCommand().equals("Exit"))

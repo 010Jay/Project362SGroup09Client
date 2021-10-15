@@ -8,6 +8,7 @@ package za.ac.cput.user_interface;
  */
 
 import za.ac.cput.entity.Entertainment;
+import za.ac.cput.entity.Food;
 import za.ac.cput.rest.EntertainmentRestImpl;
 import za.ac.cput.rest.InvoiceRestImpl;
 
@@ -25,73 +26,66 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
     private JLabel lbl,lbl0, lbl1, lbl2, lbl3, lbl4, lbl5,lbl6;
     private JLabel lblEventCode;
     private JComboBox comboBox;
-    private JLabel lblText;
+    private JTextArea lblAbout;
     private JLabel lblDate;
     private JLabel lblTime;
     private JLabel lblLocation;
     private JLabel lblCost;
     private  JLabel lblSecurity;
-    private JLabel spc01,spc0, spc, spc1, spc2, spc3, spc4,spc5;
-    private JLabel spcV01,spcV0, spcV, spcV14, spcV1, spcV2, spcV3, spcV4,spcV5;
-    private JButton btnSave, btnClear, btnQuit;
+    private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10, emptySpace11, emptySpace12, emptySpace13;
+    private JButton btnSubmit, btnExit;
     private Font ft, ft1, ft2;
 
     private Set<Entertainment> events;
 
     public EntertainmentUserInterface(){
-        super("Entertainment Application ver 1.0");
+        super("Event Menu Screen version: 1.0 by @Group 09");
 
         panelNorth = new JPanel();
-        lblHeading = new JLabel("Entertainment");
-        imageIcon = new JLabel();
-
+        lblHeading = new JLabel("Event Menu");
         panelCenter = new JPanel();
-
         panelWest = new JPanel();
-        spcV01 =new JLabel(" ");
+
         lblEventCode = new JLabel("");
-        spc0 = new JLabel(" ");
-        lbl0 = new JLabel("   Choose event: ");
         comboBox = new JComboBox();
-        lblText = new JLabel(" ");
-        lblDate = new JLabel(" ");
-        spcV = new JLabel(" ");
-        spcV0 = new JLabel(" ");
-        spcV14 = new JLabel(" ");
-        spcV1 = new JLabel(" ");
-        lblTime = new JLabel(" ");
-        spcV2 = new JLabel(" ");
-        lblLocation = new JLabel(" ");
-        spcV3 = new JLabel(" ");
-        lblCost = new JLabel(" ");
-        spcV4 = new JLabel(" ");
-        lblSecurity = new JLabel(" ");
-        spcV5 = new JLabel(" ");
+        lblAbout = new JTextArea("");
+        lblAbout.setLineWrap(true);
+        lblDate = new JLabel("");
+        lblTime = new JLabel("");
+        lblLocation = new JLabel("");
+        lblCost = new JLabel("");
+        lblSecurity = new JLabel("");
 
-        spc01 = new JLabel(" ");
-        lbl = new JLabel("   Event Code: ");
-        spc = new JLabel(" ");
-        lbl1 = new JLabel("  About: ");
-        spc1 = new JLabel(" ");
-        lbl2 = new JLabel("  Date: ");
-        spc2 = new JLabel(" ");
-        lbl3 = new JLabel("  Time: ");
-        spc3 = new JLabel(" ");
-        lbl4 = new JLabel("   Location: ");
-        spc4 = new JLabel(" ");
-        lbl5 = new JLabel("   Cost: ");
-        spc5 = new JLabel(" ");
-        lbl6 = new JLabel("   Security:");
-
+        lbl = new JLabel("Event Code: ", SwingConstants.RIGHT);
+        lbl0 = new JLabel("Choose event: ", SwingConstants.RIGHT);
+        lbl1 = new JLabel("About: ", SwingConstants.RIGHT);
+        lbl2 = new JLabel("Date: ", SwingConstants.RIGHT);
+        lbl3 = new JLabel("Time: ", SwingConstants.RIGHT);
+        lbl4 = new JLabel("Location: ", SwingConstants.RIGHT);
+        lbl5 = new JLabel("Cost: ", SwingConstants.RIGHT);
+        lbl6 = new JLabel("Security: ", SwingConstants.RIGHT);
 
         panelSouth = new JPanel();
-        btnSave = new JButton("Save");
-        btnClear = new JButton("Clear");
-        btnQuit = new JButton("Quit");
+        btnSubmit = new JButton("Submit");
+        btnExit = new JButton("Exit");
 
-        ft = new Font("Segoe UI Black", Font.PLAIN, 40);
+        ft = new Font("Segoe UI Black", Font.PLAIN, 28);
         ft1 = new Font("Arial", Font.PLAIN, 12);
         ft2 = new Font("Arial", Font.ITALIC, 12);
+
+        emptySpace1 = new JLabel();
+        emptySpace2 = new JLabel();
+        emptySpace3 = new JLabel();
+        emptySpace4 = new JLabel();
+        emptySpace5 = new JLabel();
+        emptySpace6 = new JLabel();
+        emptySpace7 = new JLabel();
+        emptySpace8 = new JLabel();
+        emptySpace9 = new JLabel();
+        emptySpace10 = new JLabel();
+        emptySpace11 = new JLabel();
+        emptySpace12 = new JLabel();
+        emptySpace13 = new JLabel();
 
        //Populate the combobox
             events = EntertainmentRestImpl.getEntertainmentList();
@@ -105,95 +99,80 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
     public void setGUI() {
         //NORTH PANEL
             panelNorth.setLayout(new FlowLayout());
-            imageIcon.setIcon(new ImageIcon("6.png"));
-            panelNorth.setBackground(Color.decode("#072863"));
+            panelNorth.setBackground(Color.decode("#4863A0"));
             lblHeading.setForeground(Color.white);
             lblHeading.setFont(ft);
 
         //CENTER PANEL
-            panelCenter.setLayout(new GridLayout(17, 1));
-            panelCenter.setBackground(Color.decode("#eceff1"));
+            panelCenter.setLayout(new GridLayout(9, 3));
+            panelCenter.setBackground(Color.decode("#CECECE"));
             comboBox.setFont(ft1);
-            lblText.setFont(ft2);
-            lblText.setForeground(Color.GRAY);
+            lblAbout.setFont(ft2);
+            lblAbout.setForeground(Color.GRAY);
+            lblAbout.setBackground(Color.decode("#CECECE"));
 
             lblDate.setFont(ft1);
             lblTime.setFont(ft2);
             lblTime.setForeground(Color.black);
 
-        //WEST PANEL
-            panelWest.setLayout(new GridLayout(17, 1));
-            lbl.setFont(ft1);
-            lbl0.setFont(ft1);
-            lbl1.setFont(ft1);
-            lbl2.setFont(ft1);
-            lbl3.setFont(ft1);
-            lbl4.setFont(ft1);
-            lbl5.setFont(ft1);
-            lbl6.setFont(ft1);
-
-            panelWest.setBackground(Color.decode("#eceff1"));
-
         //SOUTH PANEL
-            panelSouth.setLayout(new GridLayout(1, 3));
-            btnSave.setFont(ft1);
-            btnClear.setFont(ft1);
-            btnQuit.setFont(ft1);
+            panelSouth.setLayout(new GridLayout(2, 2));
+            panelSouth.setBackground(Color.decode("#CECECE"));
+            btnSubmit.setFont(ft1);
+            btnExit.setFont(ft1);
 
         //NORTH
             panelNorth.add(lblHeading);
-            panelNorth.add(imageIcon);
-
-        //WEST
-            panelWest.add(spc01);
-            panelWest.add(lbl);
-            panelWest.add(spc0);
-            panelWest.add(lbl0);
-            panelWest.add(spc);
-            panelWest.add(lbl1);
-            panelWest.add(spc1);
-            panelWest.add(lbl2);
-            panelWest.add(spc2);
-            panelWest.add(lbl3);
-            panelWest.add(spc3);
-            panelWest.add(lbl4);
-            panelWest.add(spc4);
-            panelWest.add(lbl5);
-            panelWest.add(spc5);
-            panelWest.add(lbl6);
 
         //CENTER
-            panelCenter.add(spcV01);
+            panelCenter.add(emptySpace1);
+            panelCenter.add(emptySpace2);
+            panelCenter.add(emptySpace3);
+
+            panelCenter.add(lbl);
             panelCenter.add(lblEventCode);
-            panelCenter.add(spcV0);
+            panelCenter.add(emptySpace13);
+
+            panelCenter.add(lbl0);
             panelCenter.add(comboBox);
-            panelCenter.add(spcV14);
-            panelCenter.add(lblText);
-            panelCenter.add(spcV);
+            panelCenter.add(emptySpace4);
+
+            panelCenter.add(lbl1);
+            panelCenter.add(lblAbout);
+            panelCenter.add(emptySpace5);
+
+            panelCenter.add(lbl2);
             panelCenter.add(lblDate);
-            panelCenter.add(spcV1);
+            panelCenter.add(emptySpace6);
+
+            panelCenter.add(lbl3);
             panelCenter.add(lblTime);
-            panelCenter.add(spcV2);
+            panelCenter.add(emptySpace7);
+
+            panelCenter.add(lbl4);
             panelCenter.add(lblLocation);
-            panelCenter.add(spcV3);
+            panelCenter.add(emptySpace8);
+
+            panelCenter.add(lbl5);
             panelCenter.add(lblCost);
-            panelCenter.add(spcV4);
+            panelCenter.add(emptySpace9);
+
+            panelCenter.add(lbl6);
             panelCenter.add(lblSecurity);
-            panelCenter.add(spcV5);
+            panelCenter.add(emptySpace10);
 
         //SOUTH
-            panelSouth.add(btnSave);
-            panelSouth.add(btnClear);
-            panelSouth.add(btnQuit);
+            panelSouth.add(emptySpace11);
+            panelSouth.add(emptySpace12);
+            panelSouth.add(btnSubmit);
+            panelSouth.add(btnExit);
 
         this.add(panelNorth, BorderLayout.NORTH);
-        this.add(panelWest, BorderLayout.WEST);
         this.add(panelCenter, BorderLayout.CENTER);
         this.add(panelSouth, BorderLayout.SOUTH);
 
-        btnSave.addActionListener(this);
-        btnClear.addActionListener(this);
-        btnQuit.addActionListener(this);
+        btnSubmit.addActionListener(this);
+        btnExit.addActionListener(this);
 
         //Populate the rest of the fields when an event is chosen
             comboBox.addActionListener(new ActionListener() {
@@ -206,12 +185,21 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
                         if(eventChosen.equals(evts.getChooseEvent()))
                         {
                             lblEventCode.setText(String.valueOf(evts.getEventCode()));
-                            lblText.setText(evts.getAbout());
+                            lblAbout.setText(evts.getAbout());
                             lblDate.setText(evts.getDate());
                             lblTime.setText(evts.getTime());
                             lblLocation.setText(evts.getLocation());
                             lblCost.setText(evts.getCost());
                             lblSecurity.setText(evts.getSecurity());
+                        }
+                        else if (eventChosen.equals("Choose...")){
+                            lblEventCode.setText("");
+                            lblAbout.setText("");
+                            lblDate.setText("");
+                            lblTime.setText("");
+                            lblLocation.setText("");
+                            lblCost.setText("");
+                            lblSecurity.setText("");
                         }
                     }
                 }
@@ -219,8 +207,8 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
+        this.setSize(640, 400);
         this.setVisible(true);
-        this.setSize(600, 600);
     }
 
     @Override
@@ -229,23 +217,26 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
         String eventCode = lblEventCode.getText().trim();
         String price = lblCost.getText().trim();
 
-    if (ed.getSource() == btnSave) {
+    if (ed.getActionCommand().equals("Submit")) {
 
         //Save event booking to the invoice table ??
-            InvoiceRestImpl.saveInvoice(null, eventCode, price);
-            JOptionPane.showMessageDialog(null, "Order was submitted.");
+            boolean result;
+
+            if(lblEventCode.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Please choose an event to book.");
+            }else{
+                result = InvoiceRestImpl.saveInvoice(null, eventCode, price); //Going to return false
+
+                if(result){
+                    JOptionPane.showMessageDialog(null, "There was an error booking the event.");
+                }else {
+                    JOptionPane.showMessageDialog(null, "You have successfully booked the event.");
+                    new FoodUserInterface().setGui(); //Go to food menu
+                    this.dispose();
+                }
+            }
     }
-    else if(ed.getSource() == btnClear) {
-        lblEventCode.setText("");
-        comboBox.setSelectedIndex(0);
-        lblText.setText("");
-        lblDate.setText("");
-        lblTime.setText("");
-        lblLocation.setText("");
-        lblCost.setText("");
-        lblSecurity.setText("");
-    }
-    else if(ed.getSource() == btnQuit) {
+    else if(ed.getActionCommand().equals("Exit")) {
         System.exit(0);
     }
 }
