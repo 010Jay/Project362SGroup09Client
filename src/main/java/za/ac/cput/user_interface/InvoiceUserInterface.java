@@ -151,6 +151,7 @@ public class InvoiceUserInterface extends JFrame implements ActionListener {
                 if(getStudentNumber().equals(i.getStudentNumber()))
                 {
                     lblInvoiceNumber1.setText(i.getInvoiceNumber());
+                    lblInvoiceNumber1.setToolTipText(i.getInvoiceNumber());
                     lblInvoiceDate1.setText(i.getInvoiceDate());
                     lblStudentNumber1.setText(i.getStudentNumber());
                     lblEventCode1.setText(i.getEventCode());
