@@ -14,13 +14,15 @@ public class Login {
         private String username;
         private String password;
 
+    protected Login(){}
+
     public Login(Builder builder) {
         this.studentNumber = builder.studentNumber;
         this.username = builder.username;
         this.password = builder.password;
     }
 
-    public String getStudentNo() {
+    public String getStudentNumber() {
         return studentNumber;
     }
 
@@ -32,8 +34,8 @@ public class Login {
         return password;
     }
 
-    public void setStudentNo(String studentNo) {
-        this.studentNumber = studentNo;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public void setUsername(String username) {
@@ -60,7 +62,7 @@ public class Login {
             private String username;
             private String password;
 
-        public Builder setStudentNo(String studentNumber) {
+        public Builder setStudentNumber(String studentNumber) {
             this.studentNumber = studentNumber;
             return this;
         }
