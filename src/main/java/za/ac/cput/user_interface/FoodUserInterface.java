@@ -25,7 +25,7 @@ public class FoodUserInterface extends JFrame implements ActionListener {
     private JComboBox comboBoxFoodName,comboBoxCategory;
     private JButton btnSubmit, btnExit;
     private JSpinner quantity;
-    private Font ftHeading, ftText;
+    private Font ftHeading, ftText, ftTextBold;
     private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
     Food[] foodListBasedOnCategory;
@@ -60,6 +60,7 @@ public class FoodUserInterface extends JFrame implements ActionListener {
 
         ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
         ftText = new Font("Arial", Font.PLAIN, 12);
+        ftTextBold = new Font("Arial", Font.BOLD, 12);
 
         emptySpace1 = new JLabel();
         emptySpace2 = new JLabel();
@@ -85,11 +86,20 @@ public class FoodUserInterface extends JFrame implements ActionListener {
         //Set font
             lblHeading.setFont(ftHeading);
             lblHeading.setForeground(Color.decode("#FFFFFF"));
-            lblFoodID.setFont(ftText);
-            lblFoodName.setFont(ftText);
-            lblCategory.setFont(ftText);
-            lblPrice.setFont(ftText);
-            lblQuantity.setFont(ftText);
+
+            lblFoodID.setFont(ftTextBold);
+            lblFoodName.setFont(ftTextBold);
+            lblCategory.setFont(ftTextBold);
+            lblPrice.setFont(ftTextBold);
+            lblQuantity.setFont(ftTextBold);
+            btnSubmit.setFont(ftTextBold);
+            btnExit.setFont(ftTextBold);
+
+            lblFoodID1.setFont(ftText);
+            lblPrice1.setFont(ftText);
+            comboBoxCategory.setFont(ftText);
+            comboBoxFoodName.setFont(ftText);
+            quantity.setFont(ftText);
 
         //Add components to panels
             northPanel.add(lblHeading);

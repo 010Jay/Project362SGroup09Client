@@ -17,7 +17,7 @@ public class LoginRestImpl {
     //Attributes
         private static RestTemplate restTemplate = new RestTemplate(); //Use rest template to send http requests
         private final static String BASE_URL1 = "http://localhost:8080/login/getLoginDetails"; //Url endpoint to get login details
-        private final static String BASE_URL2 = "http://localhost:8080/login/saveRegistrationDetails"; //Url endpoint to get login details
+        private final static String BASE_URL2 = "http://localhost:8080/login/saveRegistrationDetails"; //Url endpoint to save registration details
 
     public static boolean getLoginDetails(String username, String password)
     {

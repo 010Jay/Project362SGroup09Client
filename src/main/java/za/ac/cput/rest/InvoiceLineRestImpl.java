@@ -1,5 +1,12 @@
 package za.ac.cput.rest;
 
+/**
+ * Author: ??
+ * Description: Rest implementation for the invoice line
+ * File: InvoiceLineRestImpl.java
+ * Date: 14 October 2021
+ */
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,7 +18,7 @@ public class InvoiceLineRestImpl {
 
     //Attributes
         private static RestTemplate restTemplate = new RestTemplate(); //Use rest template to send http requests
-        private final static String BASE_URL = "http://localhost:8080/invoiceLine/saveInvoiceLineDetails"; //Url endpoint to get login details
+        private final static String BASE_URL = "http://localhost:8080/invoiceLine/saveInvoiceLineDetails"; //Url endpoint to save invoice line details
 
     public static boolean saveInvoiceLine(String foodId, String bevCode, String foodQuantity, String bevQuantity, String price)
     {

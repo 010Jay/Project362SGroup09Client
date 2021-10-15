@@ -17,7 +17,7 @@ public class RegistrationUserInterface extends JFrame implements ActionListener 
         private  JTextField txtUsername, txtStudentNumber;
         private  JPasswordField txtPassword;
         private JButton btnRegister, btnExit;
-        private Font ftHeading, ftText;
+        private Font ftHeading, ftText, ftTextBold;
         private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
     //Constructor
@@ -44,6 +44,7 @@ public class RegistrationUserInterface extends JFrame implements ActionListener 
 
         ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
         ftText = new Font("Arial", Font.PLAIN, 12);
+        ftTextBold = new Font("Arial", Font.BOLD, 12);
 
         emptySpace1 = new JLabel();
         emptySpace2 = new JLabel();
@@ -67,9 +68,16 @@ public class RegistrationUserInterface extends JFrame implements ActionListener 
         //Set font
             lblHeading.setFont(ftHeading);
             lblHeading.setForeground(Color.decode("#FFFFFF"));
-            lblUsername.setFont(ftText);
-            lblPassword.setFont(ftText);
-            lblStudentNumber.setFont(ftText);
+
+            lblUsername.setFont(ftTextBold);
+            lblPassword.setFont(ftTextBold);
+            lblStudentNumber.setFont(ftTextBold);
+            btnRegister.setFont(ftTextBold);
+            btnExit.setFont(ftTextBold);
+
+            txtStudentNumber.setFont(ftText);
+            txtUsername.setFont(ftText);
+            txtPassword.setFont(ftText);
 
         //Add components to panels
             northPanel.add(lblHeading);

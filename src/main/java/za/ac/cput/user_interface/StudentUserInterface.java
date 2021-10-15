@@ -24,7 +24,7 @@ public class StudentUserInterface extends JFrame implements ActionListener {
         private JLabel lblHeading, lblStudentNo, lblFirstName, lblLastName, lblEmailAddress, lblCellNo;
         private  JTextField txtStudentNo, txtFirstName, txtLastName, txtEmailAddress, txtCellNo;
         private JButton btnSubmit, btnExit;
-        private Font ftHeading, ftText;
+        private Font ftHeading, ftText, ftTextBold;
         private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
     //Constructor
@@ -55,6 +55,7 @@ public class StudentUserInterface extends JFrame implements ActionListener {
 
                 ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
                 ftText = new Font("Arial", Font.PLAIN, 12);
+                ftTextBold = new Font("Arial", Font.BOLD, 12);
 
                 emptySpace1 = new JLabel();
                 emptySpace2 = new JLabel();
@@ -78,11 +79,20 @@ public class StudentUserInterface extends JFrame implements ActionListener {
         //Set font
             lblHeading.setFont(ftHeading);
             lblHeading.setForeground(Color.decode("#FFFFFF"));
-            lblStudentNo.setFont(ftText);
-            lblFirstName.setFont(ftText);
-            lblLastName.setFont(ftText);
-            lblEmailAddress.setFont(ftText);
-            lblCellNo.setFont(ftText);
+
+            lblStudentNo.setFont(ftTextBold);
+            lblFirstName.setFont(ftTextBold);
+            lblLastName.setFont(ftTextBold);
+            lblEmailAddress.setFont(ftTextBold);
+            lblCellNo.setFont(ftTextBold);
+            btnSubmit.setFont(ftTextBold);
+            btnExit.setFont(ftTextBold);
+
+            txtStudentNo.setFont(ftText);
+            txtFirstName.setFont(ftText);
+            txtLastName.setFont(ftText);
+            txtEmailAddress.setFont(ftText);
+            txtCellNo.setFont(ftText);
 
         //Add components to panels
             northPanel.add(lblHeading);
@@ -167,6 +177,10 @@ public class StudentUserInterface extends JFrame implements ActionListener {
 
                             txtStudentNo.requestFocus();
 
+                            InvoiceUserInterface invoiceGui = new InvoiceUserInterface();
+                            invoiceGui.setStudentNumber(student.getStudentNumber());
+                            invoiceGui.setInvoiceDetails();
+                            invoiceGui.setGui();
                             this.dispose();
                         }
                         else

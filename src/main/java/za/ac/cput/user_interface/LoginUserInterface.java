@@ -24,7 +24,7 @@ public class LoginUserInterface extends JFrame implements ActionListener{
         private  JTextField txtUsername;
         private  JPasswordField txtPassword;
         private JButton btnLogin, btnExit;
-        private Font ftHeading, ftText;
+        private Font ftHeading, ftText, ftTextBold;
         private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
         //Capture student number
@@ -53,6 +53,7 @@ public class LoginUserInterface extends JFrame implements ActionListener{
 
                 ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
                 ftText = new Font("Arial", Font.PLAIN, 12);
+                ftTextBold = new Font("Arial", Font.BOLD, 12);
 
                 emptySpace1 = new JLabel();
                 emptySpace2 = new JLabel();
@@ -76,10 +77,17 @@ public class LoginUserInterface extends JFrame implements ActionListener{
        //Set font
             lblHeading.setFont(ftHeading);
             lblHeading.setForeground(Color.decode("#FFFFFF"));
-            lblUsername.setFont(ftText);
-            lblPassword.setFont(ftText);
+
+            lblUsername.setFont(ftTextBold);
+            lblPassword.setFont(ftTextBold);
+            btnLogin.setFont(ftTextBold);
+            btnExit.setFont(ftTextBold);
+
             lblHyperlink.setFont(ftText);
             lblHyperlink.setForeground(Color.BLUE.darker());
+
+            txtUsername.setFont(ftText);
+            txtPassword.setFont(ftText);
 
        //Set mouse effect for hyperlink
             lblHyperlink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

@@ -8,7 +8,6 @@ package za.ac.cput.user_interface;
  */
 
 import za.ac.cput.entity.Entertainment;
-import za.ac.cput.entity.Food;
 import za.ac.cput.rest.EntertainmentRestImpl;
 import za.ac.cput.rest.InvoiceRestImpl;
 
@@ -20,9 +19,8 @@ import java.util.Set;
 
 public class EntertainmentUserInterface extends JFrame implements ActionListener {
 
-    private JPanel panelNorth, panelWest, panelCenter, panelSouth;
+    private JPanel panelNorth, panelCenter, panelSouth;
     private JLabel lblHeading;
-    private JLabel imageIcon;
     private JLabel lbl,lbl0, lbl1, lbl2, lbl3, lbl4, lbl5,lbl6;
     private JLabel lblEventCode;
     private JComboBox comboBox;
@@ -34,7 +32,7 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
     private  JLabel lblSecurity;
     private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10, emptySpace11, emptySpace12, emptySpace13;
     private JButton btnSubmit, btnExit;
-    private Font ft, ft1, ft2;
+    private Font ftHeading, ftText, ftAbout, ftTextBold;
 
     private Set<Entertainment> events;
 
@@ -44,7 +42,6 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
         panelNorth = new JPanel();
         lblHeading = new JLabel("Event Menu");
         panelCenter = new JPanel();
-        panelWest = new JPanel();
 
         lblEventCode = new JLabel("");
         comboBox = new JComboBox();
@@ -69,9 +66,10 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
         btnSubmit = new JButton("Submit");
         btnExit = new JButton("Exit");
 
-        ft = new Font("Segoe UI Black", Font.PLAIN, 28);
-        ft1 = new Font("Arial", Font.PLAIN, 12);
-        ft2 = new Font("Arial", Font.ITALIC, 12);
+        ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
+        ftText = new Font("Arial", Font.PLAIN, 12);
+        ftAbout = new Font("Arial", Font.ITALIC, 12);
+        ftTextBold = new Font("Arial", Font.BOLD, 12);
 
         emptySpace1 = new JLabel();
         emptySpace2 = new JLabel();
@@ -101,25 +99,37 @@ public class EntertainmentUserInterface extends JFrame implements ActionListener
             panelNorth.setLayout(new FlowLayout());
             panelNorth.setBackground(Color.decode("#4863A0"));
             lblHeading.setForeground(Color.white);
-            lblHeading.setFont(ft);
+            lblHeading.setFont(ftHeading);
 
         //CENTER PANEL
             panelCenter.setLayout(new GridLayout(9, 3));
             panelCenter.setBackground(Color.decode("#CECECE"));
-            comboBox.setFont(ft1);
-            lblAbout.setFont(ft2);
+            comboBox.setFont(ftText);
+            lblAbout.setFont(ftAbout);
             lblAbout.setForeground(Color.GRAY);
             lblAbout.setBackground(Color.decode("#CECECE"));
-
-            lblDate.setFont(ft1);
-            lblTime.setFont(ft2);
+            lblEventCode.setFont(ftText);
+            lblCost.setFont(ftText);
+            lblLocation.setFont(ftText);
+            lblSecurity.setFont(ftText);
+            lblDate.setFont(ftText);
+            lblTime.setFont(ftText);
             lblTime.setForeground(Color.black);
+
+            lbl.setFont(ftTextBold);
+            lbl0.setFont(ftTextBold);
+            lbl1.setFont(ftTextBold);
+            lbl2.setFont(ftTextBold);
+            lbl3.setFont(ftTextBold);
+            lbl4.setFont(ftTextBold);
+            lbl5.setFont(ftTextBold);
+            lbl6.setFont(ftTextBold);
 
         //SOUTH PANEL
             panelSouth.setLayout(new GridLayout(2, 2));
             panelSouth.setBackground(Color.decode("#CECECE"));
-            btnSubmit.setFont(ft1);
-            btnExit.setFont(ft1);
+            btnSubmit.setFont(ftTextBold);
+            btnExit.setFont(ftTextBold);
 
         //NORTH
             panelNorth.add(lblHeading);

@@ -23,7 +23,7 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
     private JSpinner quantity;
     private JComboBox cmbCategory, cmbBevName;
     private JButton btnSubmit, btnExit;
-    private Font ftHeading, ftText;
+    private Font ftHeading, ftText, ftTextBold;
     private JLabel emptySpace1, emptySpace2, emptySpace3, emptySpace4, emptySpace5, emptySpace6, emptySpace7, emptySpace8, emptySpace9, emptySpace10;
 
     Beverage[] beverageListBasedOnCategory;
@@ -57,6 +57,7 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
 
         ftHeading = new Font("Segoe UI Black", Font.PLAIN, 28);
         ftText = new Font("Arial", Font.PLAIN, 12);
+        ftTextBold = new Font("Arial", Font.BOLD, 12);
 
         emptySpace1 = new JLabel();
         emptySpace2 = new JLabel();
@@ -69,7 +70,7 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
         emptySpace9 = new JLabel();
         emptySpace10 = new JLabel();
 
-        BeverageRestImpl.getBeverageList();
+        BeverageRestImpl.getBeverageList(); //Get beverage list
     }
 
     public void setGui() {
@@ -80,13 +81,20 @@ public class BeverageUserInterface extends JFrame implements ActionListener {
 
         lblHeading.setFont(ftHeading);
         lblHeading.setForeground(Color.decode("#FFFFFF"));
-        lblBevCode.setFont(ftText);
+
+        lblBevCode.setFont(ftTextBold);
+        lblCategory.setFont(ftTextBold);
+        lblBevName.setFont(ftTextBold);
+        lblQuantity.setFont(ftTextBold);
+        lblPrice.setFont(ftTextBold);
+        btnSubmit.setFont(ftTextBold);
+        btnExit.setFont(ftTextBold);
+
         lblBevCode1.setFont(ftText);
-        lblCategory.setFont(ftText);
-        lblBevName.setFont(ftText);
-        lblQuantity.setFont(ftText);
-        lblPrice.setFont(ftText);
         lblPrice1.setFont(ftText);
+        cmbCategory.setFont(ftText);
+        cmbBevName.setFont(ftText);
+        quantity.setFont(ftText);
 
         northPanel.add(lblHeading);
         northPanel.setBackground(Color.decode("#4863A0"));
